@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>A Personal Take on Cyber-Physical Systems</title>
+<meta name="author" content="Mo, Yilin (Department of Automation, Tsinghua University)"/>
+<meta name="description" content="A brief overview of the current researches on control and CPS."/>
+<meta name="keywords" content="Cyber-Physical System, Networked Control, Security, Privacy, Smart Grid, Smart Transportation, Control"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/dist/theme/oer-reveal.css" id="theme"/>
+
+<link rel="stylesheet" href="./reveal.js/plugin/accessibility/helper.css"/>
+
+<link rel="stylesheet" href="./reveal.js/plugin/toc-progress/toc-progress.css"/>
+
+<link rel="stylesheet" href="./reveal.js/dist/theme/toc-style.css"/>
+
+<link rel="stylesheet" href="./reveal.js/dist/theme/fonts/source-sans-pro/source-sans-pro.css"/>
+
+<link rel="stylesheet" href="figures/internal_grid_css/grid6.css"/>
+
+<link rel="stylesheet" href="figures/internal_grid_css/grid5.css"/>
+
+<link rel="stylesheet" href="figures/internal_grid_css/grid7.css"/>
+
+<link rel="stylesheet" href="figures/internal_grid_css/grid3.css"/>
+
+<link rel="stylesheet" href="figures/internal_grid_css/grid4.css"/>
+
+<link rel="stylesheet" href="figures/internal_grid_css/grid1.css"/>
+
+<link rel="stylesheet" href="figures/internal_grid_css/grid2.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<style type="text/css"> div.right {text-align:right;} </style>
+</head>
+<body prefix="dc: http://purl.org/dc/elements/1.1/ dcterms: http://purl.org/dc/terms/ dcmitype: http://purl.org/dc/dcmitype/ cc: http://creativecommons.org/ns#" typeof="dcmitype:InteractiveResource">
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-state="no-toc-progress">
+<!-- The following copyright information only applies to the title slide. -->
+<!-- SPDX-FileCopyrightText: 2017-2019 Jens Lechtenbörger -->
+<!-- SPDX-License-Identifier: CC0-1.0 -->
+<!-- This is an HTML template for the title slide. -->
+<!-- Embed logos as necessary. -->
+<!-- <a class="nooutlink" href="url"><img class="state-background your-logo-class" src="whatever.png" alt="Whatever" /></a> -->
+
+<div class="talk-title">
+    <h1 class="no-toc-progress">A Personal Take on Cyber-Physical Systems</h1>
+</div>
+<div class="talk-subtitle">
+    <p></p>
+</div>
+<!--div class="keyboard-usage">
+    <p>(Press <code>?</code> for help, <code>n</code> and <code>p</code> for next and previous slide; <a href="https://oer.gitlab.io/hints.html">usage hints</a>)</p>
+</div-->
+<div class="talk-author">
+  <p>Mo, Yilin (Department of Automation, Tsinghua University) <br />
+  TC on Cyber-Physical Systems Meetings (Aug 21, 2020)</p>
+</div>
+
+    <a class="nooutlink" href="http://www.au.tsinghua.edu.cn/"><img class="da-logo" src="logo.png" alt="Logo of Dept. Automation" /></a>
+
+</section>
+
+<section>
+<section id="slide-org8de2d55">
+<h2 id="org8de2d55">Introduction</h2>
+<div class="outline-text-2" id="text-org8de2d55">
+</div>
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org2edcb3f">
+<h3 id="org2edcb3f">Definition of Cyber-Physical System</h3>
+<p>
+ </p><div class="imgcontainer"><div about="./cps.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./cps.png" alt="Figure" style="max-height:35vh" /></p><p></p></div></div><p>
+</p>
+<p>
+<i>CPSs refer to the next generation of engineered systems that require tight integration of <b>computing</b>, <b>communication</b>, and <b>control</b> technologies to achieve <b>stability</b>, <b>performance</b>, <b>reliability</b>, <b>robustness</b>, and <b>efficiency</b> in dealing with physical systems of many application domains.</i>
+</p>
+<div class="right">
+<p>
+<a class="org-ref-reference" href="#slide-bibliography">[Kumar]</a>, Proceedings of the IEEE, 2012
+</p>
+
+</div>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgbe05be7">
+<h3 id="orgbe05be7">Applications</h3>
+<p>
+ </p><div class="grid6"><div about="./BMW.gif" typeof="dcmitype:StillImage" class="figure grid-img grid6-img1"><p><img data-src="./BMW.gif" alt="Figure" style="max-height:57.0vh" /></p><p></p></div> <div about="./vanet.jpg" typeof="dcmitype:StillImage" class="figure grid-img grid6-img2"><p><img data-src="./vanet.jpg" alt="Figure" style="max-height:28.5vh" /></p><p></p></div> <div about="./grid.jpg" typeof="dcmitype:StillImage" class="figure grid-img grid6-img3"><p><img data-src="./grid.jpg" alt="Figure" style="max-height:28.5vh" /></p><p></p></div></div><p>
+
+</p>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org7606551">
+<h4 id="org7606551">Cyber-Physical-Human Energy System</h4>
+<p>
+Complex interaction between humans, HVAC and grid. <a class="org-ref-reference" href="#slide-bibliography">[Guan2010]</a>, <a class="org-ref-reference" href="#slide-bibliography">[Jia2018]</a>
+</p>
+<p>
+ </p><div class="grid5"><div about="./fit.jpg" typeof="dcmitype:StillImage" class="figure grid-img grid5-img1"><p><img data-src="./fit.jpg" alt="Figure" style="max-height:38.0vh" /></p><p></p></div> <div about="./cpes.png" typeof="dcmitype:StillImage" class="figure grid-img grid5-img2"><p><img data-src="./cpes.png" alt="Figure" style="max-height:38.0vh" /></p><p></p></div></div><p>
+
+</p>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgf6fa2a2">
+<h3 id="orgf6fa2a2">Convergence of Computation and Control</h3>
+<div class="leftcol">
+<ul>
+<li>Cyber Space</li>
+
+</ul>
+<p>
+ </p><div class="grid7"><div about="./rpi.jpg" typeof="dcmitype:StillImage" class="figure grid-img grid7-img1"><p><img data-src="./rpi.jpg" alt="Figure" style="max-height:23.75vh" /></p><p></p></div> <div about="./fsm.png" typeof="dcmitype:StillImage" class="figure grid-img grid7-img2"><p><img data-src="./fsm.png" alt="Figure" style="max-height:23.75vh" /></p><p></p></div></div><p>
+
+</p>
+
+</div>
+<div class="rightcol">
+<ul>
+<li>Physical Space</li>
+
+</ul>
+<p>
+ </p><div class="imgcontainer"><div about="./hvac.gif" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./hvac.gif" alt="Figure" style="max-height:40vh" /></p><p></p></div></div><p>
+</p>
+<p>
+\[\dot{x} = f(x)\]
+</p>
+
+</div>
+
+<div class="slide-footer"><br></div>
+</section>
+<section>
+<ul>
+<li><p>
+1948: The term &ldquo;Cybernetics&rdquo; was coined by Norbert Wiener.  </p><div about="./wiener.jpg" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./wiener.jpg" alt="Figure" style="max-height:auto" /></p><p></p></div><p>
+</p></li>
+
+<li>1970s: Real time system</li>
+<li>1990s: Hybrid system</li>
+<li>2006: The term &ldquo;Cyber-Physical System&rdquo; was coined by NSF.</li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org97e2717">
+<h3 id="org97e2717">Convergence of Communication and Control</h3>
+<ul>
+<li>1971: <a href="https://en.wikipedia.org/wiki/ALOHAnet">ALOHAnet</a>, first public wireless packet data network</li>
+<li>1997: IEEE 802.11 (Wifi) was introduced</li>
+<li>1997: <a href="https://en.wikipedia.org/wiki/Smartdust">Smart Dust Project</a> proposed by researchers from UCB
+ </p><div class="imgcontainer"><div about="./smartdust.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./smartdust.png" alt="Figure" style="max-height:30vh" /></p><p></p></div></div><p></li>
+
+</ul>
+<ul>
+<li>1999: The term <a href="https://en.wikipedia.org/wiki/Internet_of_things">Internet of Things</a> was invented.</li>
+
+</ul>
+<div class="slide-footer"><br></div>
+</section>
+<section>
+<ul>
+<li>2000: Panel on Future Directions in Control, Dynamics, and Systems <a class="org-ref-reference" href="#slide-bibliography">[Murray2003]</a></li>
+
+</ul>
+<p>
+<i>Networks of sensory or actuator nodes with computational capabilities, connected wirelessly or by wires, can form an orchestra which controls our physical environment.</i>
+</p>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org022f043">
+<h3 id="org022f043">Many-Sidedness of CPS</h3>
+<div class="leftcol">
+<div class="r-stack">
+
+<div class="figure">
+<p><img src="./blindmenandelephant.jpg" alt="blindmenandelephant.jpg" class="fragment fade-out" data-fragment-index="0">
+</p>
+</div>
+
+<div class="figure">
+<p><img src="./singpilot.jpg" alt="singpilot.jpg" class="fragment" data-fragment-index="0">
+</p>
+</div>
+</div>
+
+</div>
+<div class="fragment appear rightcol">
+<p>
+ </p><div class="imgcontainer"><div about="./acronis.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./acronis.png" alt="Figure" style="max-height:40vh" /></p><p>Simplified Diagram of Autonomous Car</p></div></div><p>
+</p>
+
+</div>
+
+<div class="slide-footer"><br></div>
+</section>
+</section>
+<section>
+<section id="slide-org64020b0">
+<h2 id="org64020b0">Networked Control System</h2>
+<div class="outline-text-2" id="text-org64020b0">
+</div>
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org10fd2b6">
+<h3 id="org10fd2b6">Definition of Networked Control System</h3>
+<p>
+<i>Networked control systems are spatially distributed systems in which the communication between sensors, actuators, and controllers occurs through a shared band-limited digital communication network.</i>
+</p>
+<div class="right">
+<p>
+<a class="org-ref-reference" href="#slide-bibliography">[Zhang2020]</a>, Journal of Automatica Sinica
+</p>
+
+</div>
+<p>
+ </p><div class="imgcontainer"><div about="./ncs.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./ncs.png" alt="Figure" style="max-height:40vh" /></p><p>Diagram of Networked Control System</p></div></div><p>
+</p>
+<div class="slide-footer"><br></div>
+</section>
+<section>
+
+<ul>
+<li>Control over Networks:   
+<ul>
+<li>Communication is <b>imperfect</b>: quantization, delay, packet drops</li>
+<li>Communication is <b>expensive</b>: offline scheduling, event-based scheduling</li>
+<li><b>Multiple participants</b> and <b>local information</b>: multi-agent system</li>
+
+</ul></li>
+<li>Control of Networks</li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org8b07c4c">
+<h3 id="org8b07c4c">Estimation and Control over Lossy Channels</h3>
+<div class="outline-text-3" id="text-org8b07c4c">
+</div>
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org5a41e31">
+<h4 id="org5a41e31">Estimation over Lossy Channels</h4>
+<ul>
+<li>Problem proposed by Sinopoli et al. <a class="org-ref-reference" href="#slide-bibliography">[Sinopoli2004]</a></li>
+<li>System model:</li>
+
+</ul>
+<p>
+\[x_{t+1} = A x_t + w_t,\,y_t = C x_t + v_t\]
+</p>
+<ul>
+<li>Erasure channel model:</li>
+
+</ul>
+<p>
+\[\tilde y_t = \gamma_t y_t\]
+   </p><div class="imgcontainer"><div about="./estoverlossy.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./estoverlossy.png" alt="Figure" style="max-height:10vh" /></p><p></p></div></div><p>
+</p>
+<ul>
+<li>Goal: given \(\gamma_{0:t},\,\tilde y_{0:t}\), estimate \(x_t\).</li>
+
+</ul>
+<div class="slide-footer"><br></div>
+</section>
+<section>
+<ul>
+<li>Optimal estimator is a Kalman filter with a time varying gain depending on the packet loss process \(\{\gamma_t\}\).</li>
+<li>The estimator is stable (in the mean square sense) only when the packet arrival rate is larger than a critical value \(\gamma_c\).</li>
+<li>A lower bound of \(\lambda_c\):</li>
+
+</ul>
+<p>
+\[\lambda_c \geq 1-\frac{1}{\rho(A)^2}\]
+</p>
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org8361e33">
+<h4 id="org8361e33">Lower Bound is not Tight</h4>
+<ul>
+<li>Counterexample:
+\[x_{t+1} = \begin{bmatrix} 0 & 2\\ 2 & 0\end{bmatrix} x_t + w_t,\,y_t = \begin{bmatrix} 1&0\end{bmatrix}x_t + v_t.\]
+ </p><div class="imgcontainer"><div about="./criticalvaluecounter.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./criticalvaluecounter.png" alt="Figure" style="max-height:20vh" /></p><p></p></div></div><p></li>
+
+</ul>
+<ul>
+<li>Critical packet arrival probability is \(15/16\), not \(3/4\).</li>
+<li>The lower bound is tight if the system is non-degenerate, i.e., observability is preserved under different sampling frequency <a class="org-ref-reference" href="#slide-bibliography">[Mo2012]</a></li>
+<li>For degenerate system, the exact critical value is derived in <a class="org-ref-reference" href="#slide-bibliography">[Sui2015]</a></li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgeaa9963">
+<h4 id="orgeaa9963">Control over Lossy Channels <a class="org-ref-reference" href="#slide-bibliography">[Schenato2007]</a></h4>
+<ul>
+<li>System model:</li>
+
+</ul>
+<p>
+\[x_{t+1} = A x_t + B \tilde u_t + w_t ,\,y_t = C x_t + v_t\]
+</p>
+<ul>
+<li>Channel model:</li>
+
+</ul>
+<p>
+\[\tilde u_t = \nu_t u_t, \tilde y_t = \gamma_t y_t.\]
+   </p><div class="imgcontainer"><div about="./ctrloverlossy.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./ctrloverlossy.png" alt="Figure" style="max-height:20vh" /></p><p></p></div></div><p>
+</p>
+
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgc6c43e7">
+<h4 id="orgc6c43e7">Control over Lossy Channels: TCP case</h4>
+<ul>
+<li>TCP information set: \(\nu_{0:t},\gamma_{0:t},\tilde y_{0:t}\)</li>
+<li>Optimal control policy (in the LQG sense): 
+<ul>
+<li>Kalman filter with time varying gain</li>
+<li>Fixed gain state feedback (Gain is derived from an Modified Algebraic Riccati Equation)</li>
+<li>Separation principle holds</li>
+
+</ul></li>
+<li>Stability criteria:
+<ul>
+<li>Measurement packet arrival rate greater than \(\lambda_c\)</li>
+<li>MARE has a fixed point solution</li>
+
+</ul></li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgf4393bb">
+<h4 id="orgf4393bb">Control over Lossy Channels: UDP case</h4>
+<ul>
+<li>UDP information set: \(\gamma_{0:t},\tilde y_{0:t}\)</li>
+<li>Optimal control policy (in the LQG sense): 
+<ul>
+<li>State follows a Gaussian mixture distribution <a class="org-ref-reference" href="#slide-bibliography">[Lin2016]</a></li>
+<li>Optimal control is an <b>open problem</b></li>
+<li>Separation principle does NOT hold</li>
+
+</ul></li>
+<li>Stability criteria: <b>Open problem</b></li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgbdb89da">
+<h3 id="orgbdb89da">Scheduling for State Estimation</h3>
+<ul>
+<li>System model:</li>
+
+</ul>
+<p>
+\[x_{t+1} = A x_t + w_t,\,y_t = C x_t + v_t\]
+</p>
+<ul>
+<li>Erasure channel model:</li>
+
+</ul>
+<p>
+\[\tilde y_t = \gamma_t y_t\]
+   </p><div class="imgcontainer"><div about="./estoverlossy.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./estoverlossy.png" alt="Figure" style="max-height:10vh" /></p><p></p></div></div><p>
+</p>
+<ul>
+<li>Goal: Design \(\{\gamma_t\}\) to minimize estimation error, while satisfying energy, bandwidth, topological constraints.</li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgc714b7e">
+<h4 id="orgc714b7e">Off-line Schedule</h4>
+<ul>
+<li>The schedule is based on the statistics of the system, and hence can be determined off-line:
+<ul>
+<li>Deterministic Schedule: send the measurement only at even time.</li>
+<li>Stochastic Schedule: send the measurement with 50% probability at each time</li>
+
+</ul></li>
+<li>The &ldquo;optimal&rdquo; schedule is periodic <a class="org-ref-reference" href="#slide-bibliography">[Mo2014]</a>, <a class="org-ref-reference" href="#slide-bibliography">[Zhao2014]</a></li>
+<li>For special cases, closed form solution can be obtained. <a class="org-ref-reference" href="#slide-bibliography">[Shi2011]</a></li>
+<li>For general cases, convex relaxation <a class="org-ref-reference" href="#slide-bibliography">[Mo2011]</a> or submodularity <a class="org-ref-reference" href="#slide-bibliography">[Shamaiah2010]</a> can be exploited.</li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org9d52aad">
+<h4 id="org9d52aad">Event-based Schedule</h4>
+<ul>
+<li>The schedule depends on both the statistics and the realization of the</li>
+
+</ul>
+<p>
+system.
+</p>
+<ul>
+<li>For example: send the temperature if the temperature is outside \([25, 30]\).</li>
+<li><i>No news is good news:</i> If receiving no measurement at time \(t\), the fusion center knows the measurement is within \([25, 30]\)</li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgd27ce9f">
+<h4 id="orgd27ce9f">Deterministic Trigger</h4>
+<p>
+ </p><div class="grid3"><div about="./gaussian2.png" typeof="dcmitype:StillImage" class="figure grid-img grid3-img1"><p><img data-src="./gaussian2.png" alt="Figure" style="max-height:19.0vh" /></p><p></p></div> <div about="./det.png" typeof="dcmitype:StillImage" class="figure grid-img grid3-img2"><p><img data-src="./det.png" alt="Figure" style="max-height:19.0vh" /></p><p></p></div> <div about="./det2.png" typeof="dcmitype:StillImage" class="figure grid-img grid3-img3"><p><img data-src="./det2.png" alt="Figure" style="max-height:19.0vh" /></p><p></p></div></div><p>
+
+</p>
+<ul>
+<li>When \(\gamma_t = 0\), \(y_t\) follows a truncated Gaussian distribution.</li>
+<li>The optimal filter is given by the forward algorithm of hidden Markov model.</li>
+<li>Need to keep track of the pdf of \(x_t\) given \(y_{0:t}\).</li>
+<li>Near optimal filter with low complexity can be used. <a class="org-ref-reference" href="#slide-bibliography">[Wu2013]</a>, <a class="org-ref-reference" href="#slide-bibliography">[Shi2014]</a></li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org1ee0e60">
+<h4 id="org1ee0e60">Stochastic Trigger</h4>
+<p>
+ </p><div class="grid4"><div about="./gaussian2.png" typeof="dcmitype:StillImage" class="figure grid-img grid4-img1"><p><img data-src="./gaussian2.png" alt="Figure" style="max-height:19.0vh" /></p><p></p></div> <div about="./rand.png" typeof="dcmitype:StillImage" class="figure grid-img grid4-img2"><p><img data-src="./rand.png" alt="Figure" style="max-height:19.0vh" /></p><p></p></div> <div about="./rand2.png" typeof="dcmitype:StillImage" class="figure grid-img grid4-img3"><p><img data-src="./rand2.png" alt="Figure" style="max-height:19.0vh" /></p><p></p></div></div><p>
+
+</p>
+<ul>
+<li>At each time k, the sensor generates a random variable \(\zeta_t \sim U[0,1]\)</li>
+<li>Decide whether to send or not based on the following rule:</li>
+
+</ul>
+<p>
+\[\gamma_t= \begin{cases}
+0&\zeta_t \leq \Phi(y_t)\\
+1&\zeta_t > \Phi(y_t)
+\end{cases},\text{ with } \Phi(y) = \exp\left( -\frac{1}{2}y'Yy \right). \]
+</p>
+<ul>
+<li>The closed-form solution of the optimal filter is a Kalman like filter <a class="org-ref-reference" href="#slide-bibliography">[Han2013]</a></li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+</section>
+<section>
+<section id="slide-orgccaac2d">
+<h2 id="orgccaac2d">CPS Security and Privacy</h2>
+<div class="outline-text-2" id="text-orgccaac2d">
+</div>
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgb4df7d6">
+<h3 id="orgb4df7d6">Security Risks</h3>
+<ul>
+<li>The next generation CPS: <b>Smart Grids</b>, <b>Smart Buildings</b>, <b>Internet of Things</b>, will make extensive use of widespread sensing and networking.</li>
+<li>As the CPSs become &ldquo;<i>smarter</i>&rdquo;, they are also more vulnerable to malicious attacks.</li>
+
+</ul>
+<p>
+ </p><div class="grid1"><div about="./smartcity.jpg" typeof="dcmitype:StillImage" class="figure grid-img grid1-img1"><p><img data-src="./smartcity.jpg" alt="Figure" style="max-height:19.0vh" /></p><p></p></div> <div about="./smartgrid.png" typeof="dcmitype:StillImage" class="figure grid-img grid1-img2"><p><img data-src="./smartgrid.png" alt="Figure" style="max-height:19.0vh" /></p><p></p></div> <div about="./SmartHome.jpg" typeof="dcmitype:StillImage" class="figure grid-img grid1-img3"><p><img data-src="./SmartHome.jpg" alt="Figure" style="max-height:19.0vh" /></p><p></p></div></div><p>
+
+</p>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgcd68f35">
+<h4 id="orgcd68f35">The First CPS Malware: Stuxnet</h4>
+<ul>
+<li>Stuxnet is the first discovered malware that spies on and subverts industrial control systems. It was discovered in June 2010.
+ </p><div class="imgcontainer"><div about="./stuxnet.jpg" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./stuxnet.jpg" alt="Figure" style="max-height:auto" /></p><p>Stuxnet Incident</p></div></div><p></li>
+
+</ul>
+
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org5d46fed">
+<h4 id="org5d46fed">Threats to Industrial Control Systems</h4>
+<ul>
+<li><p>
+In FY 2016, ICS-CERT received <b>290</b> incidents. The scope of incidents includes:  </p><div about="./cert.jpg" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./cert.jpg" alt="Figure" style="max-height:auto" /></p><p></p></div><p>
+</p>
+<ul>
+<li>Unauthorized access,</li>
+<li>Exploitation of zero-day vulnerabilities,</li>
+<li>Malware infections within air-gapped control system networks.</li>
+
+</ul></li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org98c4816">
+<h4 id="org98c4816">Attack Through Supply Chain</h4>
+<ul>
+<li>70% of the components for Boeing 787 are manufactured by other suppliers <a class="org-ref-reference" href="#slide-bibliography">[Tang2009]</a>
+ </p><div class="imgcontainer"><div about="./boeing.jpg" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./boeing.jpg" alt="Figure" style="max-height:auto" /></p><p>Supply Chain for Boeing 787</p></div></div><p></li>
+
+</ul>
+
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org9866750">
+<h4 id="org9866750">Black Energy</h4>
+<ul>
+<li><p>
+A Successful attack on <b>critical infrastructure</b> can be devastating.
+</p></li>
+
+</ul>
+<p>
+ </p><div class="grid2"><div about="./ukraine.jpg" typeof="dcmitype:StillImage" class="figure grid-img grid2-img1"><p><img data-src="./ukraine.jpg" alt="Figure" style="max-height:47.5vh" /></p><p></p></div> <div about="./venezuela.jpg" typeof="dcmitype:StillImage" class="figure grid-img grid2-img2"><p><img data-src="./venezuela.jpg" alt="Figure" style="max-height:47.5vh" /></p><p></p></div></div><p>
+
+</p>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org266509b">
+<h3 id="org266509b">Cyber-Physical Security</h3>
+<ul>
+<li>CIA Triad: <b>Confidentiality</b>, <b>Integrity</b>, <b>Availability</b></li>
+<li>A case study for smart grid <a class="org-ref-reference" href="#slide-bibliography">[Mo2011]</a></li>
+
+</ul>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Control Signal</td>
+<td class="org-left">Measurements</td>
+<td class="org-left">Software</td>
+</tr>
+
+<tr>
+<td class="org-left">Confidentiality</td>
+<td class="org-left">Exposure of System Structure</td>
+<td class="org-left">Unauthorized Access</td>
+<td class="org-left">Piracy</td>
+</tr>
+
+<tr>
+<td class="org-left">Integrity</td>
+<td class="org-left"><b>Changes of Control Command</b></td>
+<td class="org-left"><b>Incorrect Data</b></td>
+<td class="org-left"><b>Malicious Software</b></td>
+</tr>
+
+<tr>
+<td class="org-left">Availability</td>
+<td class="org-left"><b>Inability to Control the Grid</b></td>
+<td class="org-left"><b>Unavailability of Measurements</b></td>
+<td class="org-left">N/A</td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org4f1d12a">
+<h4 id="org4f1d12a">Threat Modelling</h4>
+<ul>
+<li><p>
+<a class="org-ref-reference" href="#slide-bibliography">[Teixeira2015]</a> proposes a 3-dimension attack space: </p><div about="./cpsattackspace.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./cpsattackspace.png" alt="Figure" style="max-height:auto" /></p><p></p></div><p>
+</p>
+<ul>
+<li><b>System Knowledge</b>: Knowledge of off-line system parameters</li>
+<li><b>Disclosure Resources</b>: Knowledge of on-line signals</li>
+<li><b>Disruption Resources</b>: Manipulation of on-line signals</li>
+
+</ul></li>
+<li>Can disclosure resources be used to gain system knowledge (data-driven attack)? <a class="org-ref-reference" href="#slide-bibliography">[Park2019]</a>, <a class="org-ref-reference" href="#slide-bibliography">[Yuan2020]</a></li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgf9116a2">
+<h4 id="orgf9116a2">Threat Analysis and Design</h4>
+<div class="leftcol">
+<p>
+Adversary&rsquo;s Perspective: 
+</p>
+<ul>
+<li>Maximize impact</li>
+<li>Minimize required resources</li>
+<li>Stealthiness constraints</li>
+
+</ul>
+<p>
+ </p><div about="./zero.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./zero.png" alt="Figure" style="max-height:40vh" /></p><p></p></div><p>
+</p>
+
+</div>
+
+<div class="rightcol">
+<p>
+System&rsquo;s Perspective:
+</p>
+<ul>
+<li>Fundamental limit</li>
+<li>Stability under attack</li>
+<li>Performance under attack</li>
+<li>Cost of Security</li>
+
+</ul>
+<p>
+ </p><div about="./velocityone.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./velocityone.png" alt="Figure" style="max-height:40vh" /></p><p></p></div><p>
+</p>
+
+</div>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org956a911">
+<h4 id="org956a911">Countermeasures: Defense in Depth</h4>
+<ul>
+<li><p>
+Defense in Depth </p><div about="./defense.jpg" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./defense.jpg" alt="Figure" style="max-height:40vh" /></p><p></p></div><p>
+</p>
+<ul>
+<li>Prevention
+<ul>
+<li>Using cryptography/coding to preserve confidentiality (privacy)</li>
+
+</ul></li>
+<li>Detection
+<ul>
+<li>Fault Detection and Isolation (FDI)</li>
+<li>Active Detection</li>
+
+</ul></li>
+<li>Resiliency
+<ul>
+<li>Off-line: Resilient system design</li>
+<li>On-line: Secure information fusion, control</li>
+
+</ul></li>
+<li>Recovery
+<ul>
+<li>Software rejuvenation</li>
+<li>Patching</li>
+
+</ul></li>
+<li>&#x2026;</li>
+
+</ul></li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org5ef70e9">
+<h3 id="org5ef70e9">Active Detection against Replay Attack</h3>
+<div class="outline-text-3" id="text-org5ef70e9">
+</div>
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org025dd9b">
+<h4 id="org025dd9b">Stuxnet</h4>
+<ul>
+<li>NY times: <i>The worm itself now appears to have included two major components. One was designed to send Iran&rsquo;s nuclear centrifuges spinning wildly out of control. Another seems right out of the movies: <b>The computer program also secretly recorded what normal operations at the nuclear plant looked like, then played those readings back to plant operators</b>, like a pre-recorded security tape in a bank heist, so that it would appear that everything was operating normally while the centrifuges were actually tearing themselves apart.</i></li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org0d54877">
+<h4 id="org0d54877">System Description</h4>
+<div class="leftcol">
+<div class="r-stack">
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./replaydiagramone.svg" class="fragment fade-out" data-fragment-index="0">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./replaydiagramtwo.svg" class="fragment" data-fragment-index="0">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+</div>
+<ul>
+<li>Assumptions: Linear Gaussian systems, Linear state estimator+state feedback, \(\chi_2\) failure detector.</li>
+
+</ul>
+
+</div>
+<div class="fragment appear rightcol">
+<p>
+ </p><div class="imgcontainer"><div about="./replayunstableA.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./replayunstableA.png" alt="Figure" style="max-height:40vh" /></p><p>Detection Rate v.s. Time</p></div></div><p>
+</p>
+<p>
+Not all system can detect replay attack!
+</p>
+
+</div>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org2215d0d">
+<h4 id="org2215d0d">Active Detection via Physical Watermarking</h4>
+<div class="leftcol">
+<ul>
+<li>Change the control law by adding a zero mean i.i.d. Gaussian watermarking signal \(\zeta(k)\):</li>
+
+</ul>
+<p>
+\[ u(k) = \text{Optimal LQG Control}+ \zeta(k).\]
+ </p><div class="imgcontainer"><div about="./replaywithphywatermark.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./replaywithphywatermark.png" alt="Figure" style="max-height:40vh" /></p><p>Watermark</p></div></div><p>
+</p>
+
+</div>
+<div class="rightcol">
+<ul>
+<li>Optimizing the covariance of \(\zeta(k)\):
+\[ \begin{align*}
+        & \mathop{\textit{max}}&
+        & Detection\;Performance \\
+        &\text{s.t.}&
+        &Ctrl\;Loss\leq\delta
+      \end{align*}\]</li>
+<li>Can be relaxed into semidefinite programming <a class="org-ref-reference" href="#slide-bibliography">[Mo2014]</a></li>
+<li>The problem can be solved on-line, without explicit system knowledge <a class="org-ref-reference" href="#slide-bibliography">[Liu2020]</a></li>
+<li>Other watermarking schemes (e.g., multiplicative watermark) <a class="org-ref-reference" href="#slide-bibliography">[Ferrari2020]</a>, <a class="org-ref-reference" href="#slide-bibliography">[Satchidanandan2017]</a></li>
+
+</ul>
+
+</div>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org1e0137c">
+<h4 id="org1e0137c">Simulation: Tennessee Eastman Process</h4>
+<div class="leftcol">
+<ul>
+<li>The TEP is a realistic industrial model for process control.
+ </p><div class="imgcontainer"><div about="./simplifiedmodel.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./simplifiedmodel.png" alt="Figure" style="max-height:40vh" /></p><p>TEP Model</p></div></div><p></li>
+
+</ul>
+<ul>
+<li>The simplified model contain 4 inputs, 4 outputs and 7 internal states.</li>
+
+</ul>
+
+</div>
+<div class="rightcol">
+<p>
+ </p><div class="imgcontainer"><div about="./gng_te.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./gng_te.png" alt="Figure" style="max-height:40vh" /></p><p>Detection Performance</p></div></div><p>
+</p>
+<ul>
+<li>Physical watermarks enable replay attack detection.</li>
+<li>The optimal watermark signal and detector can be learned using data-driven approach.</li>
+
+</ul>
+
+</div>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org5409ce0">
+<h3 id="org5409ce0">Secure State Estimation</h3>
+<div class="outline-text-3" id="text-org5409ce0">
+</div>
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgb49a4ae">
+<h4 id="orgb49a4ae">Static State Estimation</h4>
+<ul>
+<li>Sensor model:</li>
+
+</ul>
+<p>
+\[\begin{bmatrix}
+    y_1\\
+    \vdots\\
+    y_m
+    \end{bmatrix} = Hx + noise + attack. \]
+</p>
+<ul>
+<li>The noise is <b>small</b> (zero mean Gaussian or bounded) but <b>ubiquitous</b>.</li>
+<li>The attack is \(p\)-<b>sparse</b> but can be <b>arbitrarily large</b>.</li>
+<li>Originally proposed by Peng et al.<a class="org-ref-reference" href="#slide-bibliography">[Liu2011]</a> in the context of DC power flow model.</li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org9ffc193">
+<h4 id="org9ffc193">Fundamental Limit for Noiseless Case</h4>
+<ul>
+<li>The system is called \(p\)-observable if \(H\) is full column rank even after removing rows corresponding to an arbitrary set of \(p\) sensors.</li>
+<li>The system is NOT \(p\)-observable \(\Rightarrow\) There exists undetectable attack.</li>
+<li>The system is NOT \(2p\)-observable \(\Rightarrow\) There exists unidentifiable attack.</li>
+<li>The system is NOT \(2p\)-observable \(\Rightarrow\) One cannot &ldquo;securely&rdquo; estimate the state with bounded error.</li>
+<li>The &ldquo;secure&rdquo; estimation problem is <b>NP-hard</b> in general <a class="org-ref-reference" href="#slide-bibliography">[Hendrickx2014]</a>, <a class="org-ref-reference" href="#slide-bibliography">[Mao2019]</a></li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org918c9f0">
+<h4 id="org918c9f0">Secure Static Estimator</h4>
+<div class="leftcol">
+<ul>
+<li>Estimator with Combinatorial Complexity <a class="org-ref-reference" href="#slide-bibliography">[Fawzi2014]</a>, <a class="org-ref-reference" href="#slide-bibliography">[Ren2020]</a>, e.g.,</li>
+
+</ul>
+<p>
+\[  \begin{align*}
+        & \mathop{\textit{minimize}}\limits_{\hat x,a,w}&
+        & \|w\|^2 \\
+        &\text{subject to}&
+        &y = H \hat x + w + a,\\
+    &&
+    &\|a\|_0\leq p.
+      \end{align*}\]
+</p>
+<ul>
+<li>Require \(2p\)-observable to be &ldquo;secure&rdquo;</li>
+<li>Achieves fundamental limit</li>
+
+</ul>
+
+</div>
+<div class="rightcol">
+<ul>
+<li>Convex optimization based estimator <a class="org-ref-reference" href="#slide-bibliography">[Han2019]</a></li>
+
+</ul>
+<p>
+\[\hat x = \mathop{argmin}_{\hat x} f_i (y_i - H_i\hat x)\]
+</p>
+<ul>
+<li>Require stronger condition than \(2p\)-observable to generate &ldquo;secure&rdquo; estimate.</li>
+
+</ul>
+
+</div>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org351b847">
+<h4 id="org351b847">Simulation: IEEE 14-Bus System</h4>
+<div class="leftcol">
+<ul>
+<li>The system has 27 sensors and 13 states</li>
+
+</ul>
+<p>
+ </p><div class="imgcontainer"><div about="./ieee14.jpg" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./ieee14.jpg" alt="Figure" style="max-height:40vh" /></p><p>IEEE 14-Bus System</p></div></div><p>
+</p>
+<ul>
+<li>The power flow meter on the red line is being attacked</li>
+
+</ul>
+
+</div>
+<div class="rightcol">
+<p>
+ </p><div class="imgcontainer"><div about="./ieee14lasso.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./ieee14lasso.png" alt="Figure" style="max-height:40vh" /></p><p>Stuxnet Incident</p></div></div><p>
+</p>
+<ul>
+<li>With fine-tuned parameters, we can design a &ldquo;good&rdquo; estimator both in the <b>absence</b> and in the <b>presence</b> of attacks.</li>
+
+</ul>
+
+</div>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org595e09f">
+<h4 id="org595e09f">Dynamic State Estimation</h4>
+<ul>
+<li>System Model:</li>
+
+</ul>
+<p>
+\[x_{t+1} = A x_t + w_t,\,y_t = C x_t + v_t + a_t\]
+</p>
+<ul>
+<li>\(p\)-sparse attack model: At most \(p\) sensors are compromised (\(a_i(t) \neq 0\)) during operation.</li>
+<li>Fundamental limit: The state can be &ldquo;securely&rdquo; estimated with bounded error only if the system is \(2p\)-detectable <a class="org-ref-reference" href="#slide-bibliography">[Nakahira2018]</a></li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org7733598">
+<h4 id="org7733598">Dynamic Estimator: Moving Horizon Approach</h4>
+<p>
+ </p><div class="imgcontainer"><div about="./secureest1.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./secureest1.png" alt="Figure" style="max-height:40vh" /></p><p>Moving Horizon with Window Size 3</p></div></div><p>
+</p>
+<p>
+<a class="org-ref-reference" href="#slide-bibliography">[Fawzi2014]</a>, <a class="org-ref-reference" href="#slide-bibliography">[Shoukry2017]</a>
+</p>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org54d1143">
+<h4 id="org54d1143">Dynamic Estimator: Local Fusion Approach</h4>
+<p>
+ </p><div class="imgcontainer"><div about="./secureest2.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./secureest2.png" alt="Figure" style="max-height:40vh" /></p><p>Secure Estimator Design with Local Estimators</p></div></div><p>
+</p>
+<p>
+<a class="org-ref-reference" href="#slide-bibliography">[Liu2017]</a>, <a class="org-ref-reference" href="#slide-bibliography">[Mao2019]</a>
+</p>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org83b706a">
+<h4 id="org83b706a">Dynamic Estimator: Switching Approach</h4>
+<p>
+ </p><div class="imgcontainer"><div about="./secureest3.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./secureest3.png" alt="Figure" style="max-height:40vh" /></p><p>Secure Estimator Design with Switching</p></div></div><p>
+</p>
+<p>
+<a class="org-ref-reference" href="#slide-bibliography">[Nakahira2018]</a>, <a class="org-ref-reference" href="#slide-bibliography">[An2018]</a>
+</p>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgfd66cdf">
+<h4 id="orgfd66cdf">Case Study: Secure Est against GPS Spoofing for Vehicle Localization</h4>
+<div class="leftcol">
+<p>
+ </p><div class="imgcontainer"><div about="./gnssdrift.jpg" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./gnssdrift.jpg" alt="Figure" style="max-height:70vh" /></p><p>EKF under GPS Spoofing</p></div></div><p>
+</p>
+
+</div>
+<div class="rightcol">
+<p>
+ </p><div class="imgcontainer"><div about="./gnssdriftsafe.jpg" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./gnssdriftsafe.jpg" alt="Figure" style="max-height:70vh" /></p><p>Secure Filter under GPS Spoofing</p></div></div><p>
+</p>
+
+</div>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org87a5d8f">
+<h3 id="org87a5d8f">Privacy</h3>
+<div class="outline-text-3" id="text-org87a5d8f">
+</div>
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org1c0e50c">
+<h4 id="org1c0e50c">Differential Privacy</h4>
+<ul>
+<li>\(\epsilon\)-private: Let \(\mathcal M\) be a randomized algorithm that takes certain data \(x\) as input. \(\mathcal M\) is \(\epsilon\)-differentially private if</li>
+
+</ul>
+<p>
+\[\exp(-\epsilon) P(\mathcal A(x_2)\in S) \leq P(\mathcal A(x_1)\in S) \leq \exp(\epsilon) P(\mathcal A(x_2)\in S),\]
+for any adjacent \(x_1\) and \(x_2\) and measurable set \(S\).
+</p>
+<ul>
+<li>Other privacy metrics exists, e.g., \((\epsilon,\delta)\)-privacy, mutual information, information leakage, &#x2026;</li>
+<li>Trade-off: Utility v.s. Privacy</li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgc182e92">
+<h4 id="orgc182e92">Additive Noise Mechanism</h4>
+<div class="leftcol">
+<ul>
+<li>Laplacian Mechanism:</li>
+
+</ul>
+<p>
+\[\mathcal M_{f,\epsilon}(x) = f(x) + Lap\]
+     </p><div class="imgcontainer"><div about="./laplace.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./laplace.png" alt="Figure" style="max-height:40vh" /></p><p></p></div></div><p>
+</p>
+
+</div>
+<div class="rightcol">
+<ul>
+<li>Gaussian Mechanism:</li>
+
+</ul>
+<p>
+\[\mathcal M_{f,\epsilon}(x) = f(x) + \mathcal N\]
+     </p><div class="imgcontainer"><div about="./gauss3.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./gauss3.png" alt="Figure" style="max-height:40vh" /></p><p></p></div></div><p>
+</p>
+
+</div>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org80569b9">
+<h4 id="org80569b9">Privacy Preserving Consensus</h4>
+<ul>
+<li><p>
+The goal: </p><div about="./dist.png" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./dist.png" alt="Figure" style="max-height:30vh" /></p><p></p></div><p>
+</p>
+<ul>
+<li>Utility: Converges to the average of the initial states</li>
+<li>Privacy: Not revealing the exact initial state to other agents</li>
+
+</ul></li>
+<li>Algorithm: <a class="org-ref-reference" href="#slide-bibliography">[Mo2017]</a></li>
+
+</ul>
+<p>
+\[x_i^+(k) = x_i(k) + v_i(k),\,x_i(k+1) = a_{ii}x_i^+(k) + \sum_{j\in\mathcal N(i)} a_{ij} x_j^+(k)\]
+</p>
+<ul>
+<li>Utility: Converges to the exact average (as fast as the noiseless consensus)</li>
+<li>Privacy: Privacy of an agent is preserved as long as it has no super neighbor.</li>
+<li>Additive noise mechanism for other distributed algorithms, e.g., estimation, optimization <a class="org-ref-reference" href="#slide-bibliography">[Liu2019]</a>, <a class="org-ref-reference" href="#slide-bibliography">[Wang2019]</a>, <a class="org-ref-reference" href="#slide-bibliography">[He2020]</a>, <a class="org-ref-reference" href="#slide-bibliography">[LeNy2014]</a>, <a class="org-ref-reference" href="#slide-bibliography">[Cortes2016]</a></li>
+
+</ul>
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org1216af7">
+<h4 id="org1216af7">Homomorphic Encryption</h4>
+<ul>
+<li>Partially Homomorphic Encryption:
+<ul>
+<li>There exists \(\oplus\), s.t.: \(\mathcal E(m_1) \oplus \mathcal E(m_2)  = \mathcal E(m_1 + m_2)\);</li>
+<li>Or there exists \(\otimes\), s.t.: \(\mathcal E(m_1) \otimes \mathcal E(m_2)  = \mathcal E(m_1 \times m_2)\)</li>
+<li>One additively homomorphic encryption is <a href="https://en.wikipedia.org/wiki/Paillier_cryptosystem">Paillier cryptosystem</a>.</li>
+<li>Given \(A\) and \(\mathcal E(x)\), one can compute \(\mathcal E(Ax)\), if additively homomorphic.</li>
+
+</ul></li>
+<li>Fully Homomorphic Encryption:  <a class="org-ref-reference" href="#slide-bibliography">[Gentry2009]</a>
+<ul>
+<li>Both \(\oplus,\otimes\) exist</li>
+<li>Computationally expensive</li>
+
+</ul></li>
+<li>Control algorithms based on homomorphic encryption: <a class="org-ref-reference" href="#slide-bibliography">[Hadjicostis2019]</a>, <a class="org-ref-reference" href="#slide-bibliography">[Shoukry2015]</a>, <a class="org-ref-reference" href="#slide-bibliography">[Fang2018]</a>, <a class="org-ref-reference" href="#slide-bibliography">[Yan2020]</a></li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+</section>
+<section>
+<section id="slide-orgdc5e241">
+<h2 id="orgdc5e241">Conclusion</h2>
+<div class="outline-text-2" id="text-orgdc5e241">
+</div>
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org1635c5f">
+<h3 id="org1635c5f">Modelling and Design of Cyber-Physical System</h3>
+<p>
+<i>All models are wrong, but some are useful.</i>  &#x2013; George Box 
+</p>
+<ul>
+<li>What is a good control model/abstraction for computation and communication?</li>
+<li><p>
+Modular versus Cross-Layered Design  </p><div about="./cross.gif" typeof="dcmitype:StillImage" class="figure"><p><img data-src="./cross.gif" alt="Figure" style="max-height:40vh" /></p><p></p></div><p>
+</p></li>
+
+<li>Model-based versus Data-driven?</li>
+
+</ul>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-org8e89354">
+<h3 id="org8e89354">Towards a Science of Cyber-Physical System</h3>
+<ul>
+<li>Much important work remains to be done: <a class="org-ref-reference" href="#slide-bibliography">[Kumar]</a>
+<ul>
+<li>To capture and analyze the dynamics of the communications, computation, control, and applications in a unified theoretical framework.</li>
+<li>To understand and predict complex behaviors caused by tight interactions between cyber and physical domains.</li>
+<li>High-level decision making based on information collected from different sources at different spatial and temporal scales</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-orgb2f089c">
+<h3 id="orgb2f089c">Thank you for your time!</h3>
+
+<div class="slide-footer"><br></div>
+</section>
+<section id="slide-bibliography">
+<h3 id="bibliography">Bibliography</h3>
+<ul class='org-ref-bib'><li><a id="An2018">[An2018]</a> <a name="An2018"></a>An & Yang, Secure State Estimation Against Sparse Sensor Attacks With Adaptive Switching Mechanism, <i>IEEE Trans. Automat. Contr. 63(8)</i>, 2596-2603 (2018). <a href="https://ieeexplore.ieee.org/document/8085187/">https://ieeexplore.ieee.org/document/8085187/</a></li>
+<li><a id="Cortes2016">[Cortes2016]</a> <a name="Cortes2016"></a>Cortes, Dullerud, Han, Ny, Mitra & Pappas, Differential privacy in control and network systems, in: 2016 IEEE 55th Conf. Decis. Control, 2016. <a href="http://ieeexplore.ieee.org/document/7798915/">http://ieeexplore.ieee.org/document/7798915/</a></li>
+<li><a id="Fang2018">[Fang2018]</a> <a name="Fang2018"></a>Fang, Zamani & Chen, Secure and Privacy Preserving Consensus for Second-order Systems Based on Paillier Encryption, <i></i>, (2018). <a href="http://arxiv.org/abs/1805.01065">http://arxiv.org/abs/1805.01065</a></li>
+<li><a id="Fawzi2014">[Fawzi2014]</a> <a name="Fawzi2014"></a>Fawzi, Tabuada & Diggavi, Secure Estimation and Control for Cyber-Physical Systems Under Adversarial Attacks, <i>IEEE Trans. Automat. Contr. 59(6)</i>, 1454-1467 (2014). <a href="http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=6727407">http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=6727407</a></li>
+<li><a id="Ferrari2020">[Ferrari2020]</a> <a name="Ferrari2020"></a>Ferrari & Teixeira, A Switching Multiplicative Watermarking Scheme for Detection of Stealthy Cyber-Attacks, <i>IEEE Trans. Automat. Contr. </i>, 1-1 (2020). <a href=""></a></li>
+<li><a id="Gentry2009">[Gentry2009]</a> <a name="Gentry2009"></a>Craig Gentry, A fully homomorphic encryption scheme, Stanford University, 2009.  <a href=""></a></li>
+<li><a id="Guan2010">[Guan2010]</a> <a name="Guan2010"></a>Guan, Xu & Jia, Energy-efficient buildings facilitated by microgrid, <i>IEEE Trans. Smart Grid 1(3)</i>, 243-252 (2010). <a href=""></a></li>
+<li><a id="Hadjicostis2019">[Hadjicostis2019]</a> <a name="Hadjicostis2019"></a>Hadjicostis, Privary Preserving Distributed Average Consensus via Homomorphic Encryption, in: Proc. IEEE Conf. Decis. Control, 2019. <a href="https://ieeexplore.ieee.org/document/8619120/">https://ieeexplore.ieee.org/document/8619120/</a></li>
+<li><a id="Han2013">[Han2013]</a> <a name="Han2013"></a>Han, Mo, Wu, Sinopoli & Shi, Stochastic event-triggered sensor scheduling for remote state estimation, in: Proc. IEEE Conf. Decis. Control, 2013. <a href=""></a></li>
+<li><a id="Han2019">[Han2019]</a> <a name="Han2019"></a>Han, Mo & Xie, Convex Optimization Based State Estimation Against Sparse Integrity Attacks, <i>IEEE Trans. Automat. Contr. 64(6)</i>, 2383-2395 (2019). <a href=""></a></li>
+<li><a id="He2020">[He2020]</a> <a name="He2020"></a>He, Cai & Guan, Differential Private Noise Adding Mechanism and Its Application on Consensus Algorithm, <i>IEEE Trans. Signal Process. 68</i>, 4069-4082 (2020). <a href=""></a></li>
+<li><a id="Hendrickx2014">[Hendrickx2014]</a> <a name="Hendrickx2014"></a>Hendrickx, Johansson, Jungers, Sandberg & Sou, Efficient Computations of a Security Index for False Data Attacks in Power Networks, <i>IEEE Trans. Automat. Contr. 59(12)</i>, 3194-3208 (2014). <a href="http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=6882830">http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=6882830</a></li>
+<li><a id="Jia2018">[Jia2018]</a> <a name="Jia2018"></a>Jia, Wu, Wu & Guan, Event-Based HVAC Control - A Complexity-Based Approach, <i>IEEE Trans. Autom. Sci. Eng. 15(4)</i>, 1909-1919 (2018). <a href=""></a></li>
+<li><a id="Kumar">[Kumar]</a> <a name="Kumar"></a>Kim & Kumar, Cyber-physical systems: A perspective at the centennial, in: Proc. IEEE, 2012. <a href=""></a></li>
+<li><a id="LeNy2014">[LeNy2014]</a> <a name="LeNy2014"></a>Le Ny & Pappas, Differentially Private Filtering, <i>IEEE Trans. Automat. Contr. 59(2)</i>, 341-354 (2014). <a href="http://ieeexplore.ieee.org/articleDetails.jsp?arnumber=6606817">http://ieeexplore.ieee.org/articleDetails.jsp?arnumber=6606817</a></li>
+<li><a id="Lin2016">[Lin2016]</a> <a name="Lin2016"></a>Lin, Su, Shu, Wu & Xu, Optimal Estimation in UDP-Like Networked Control Systems with Intermittent Inputs: Stability Analysis and Suboptimal Filter Design, <i>IEEE Trans. Automat. Contr. 61(7)</i>, 1794-1809 (2016). <a href=""></a></li>
+<li><a id="Liu2011">[Liu2011]</a> <a name="Liu2011"></a>Liu, Ning & Reiter, False data injection attacks against state estimation in electric power grids, <i>ACM Trans. Inf. Syst. Secur. 14(1)</i>, 1-33 (2011). <a href="http://dl.acm.org/citation.cfm?id=1952982.1952995">http://dl.acm.org/citation.cfm?id=1952982.1952995</a></li>
+<li><a id="Liu2017">[Liu2017]</a> <a name="Liu2017"></a>Liu, Mo & Garone, Secure Dynamic State Estimation by Decomposing Kalman Filter, <i>IFAC-PapersOnLine 50(1)</i>, (2017). <a href=""></a></li>
+<li><a id="Liu2019">[Liu2019]</a> <a name="Liu2019"></a>Liu, Wu, Manchester & Shi, Gossip Algorithms that Preserve Privacy for Distributed Computation Part I: The Algorithms and Convergence Conditions, in: Proc. IEEE Conf. Decis. Control, 2019. <a href=""></a></li>
+<li><a id="Liu2020">[Liu2020]</a> <a name="Liu2020"></a>Liu, Mo, Yan, Xie & Johansson, An Online Approach to Physical Watermark Design, <i>IEEE Trans. Automat. Contr. </i>, 1-1 (2020). <a href=""></a></li>
+<li><a id="Mao2019">[Mao2019]</a> <a name="Mao2019"></a>Mao, Mitra, Sundaram & Tabuada, When is the Secure State-Reconstruction Problem Hard, in: Proc. IEEE Conf. Decis. Control, 2019. <a href=""></a></li>
+<li><a id="Mo2011">[Mo2011]</a> <a name="Mo2011"></a>Mo, Kim, Brancik, Dickinson, Lee, Perrig & Sinopoli, Cyber – Physical Security of a Smart Grid Infrastructure, <i>Proc. IEEE 100(1)</i>, 1-15 (2011). <a href="http://dx.doi.org/10.1109/JPROC.2011.2161428">http://dx.doi.org/10.1109/JPROC.2011.2161428</a></li>
+<li><a id="Mo2012">[Mo2012]</a> <a name="Mo2012"></a>Mo & Sinopoli, Kalman filtering with intermittent observations: Tail distribution and critical value, <i>IEEE Trans. Automat. Contr. 57(3)</i>, 677-689 (2012). <a href=""></a></li>
+<li><a id="Mo2014">[Mo2014]</a> <a name="Mo2014"></a>Mo, Chabukswar & Sinopoli, Detecting Integrity Attacks on SCADA Systems, <i>IEEE Trans. Control Syst. Technol. 22(4)</i>, 1396-1407 (2014). <a href="http://ieeexplore.ieee.org/articleDetails.jsp?arnumber=6612700">http://ieeexplore.ieee.org/articleDetails.jsp?arnumber=6612700</a></li>
+<li><a id="Mo2017">[Mo2017]</a> <a name="Mo2017"></a>Mo & Murray, Privacy Preserving Average Consensus, <i>IEEE Trans. Automat. Contr. 62(2)</i>, (2017). <a href=""></a></li>
+<li><a id="Murray2003">[Murray2003]</a> <a name="Murray2003"></a>Murray, Control in an Information Rich World: Report of the Panel on Future Directions inControl, Dynamics, and Systems, Society for Industrial and Applied Mathematics, 2003. <a href="https://epubs.siam.org/doi/abs/10.1137/1.9780898718010">https://epubs.siam.org/doi/abs/10.1137/1.9780898718010</a></li>
+<li><a id="Nakahira2018">[Nakahira2018]</a> <a name="Nakahira2018"></a>Nakahira & Mo, Attack-Resilient H2, H-infinity, and L1 State Estimator, <i>IEEE Trans. Automat. Contr. </i>, (2018). <a href=""></a></li>
+<li><a id="Park2019">[Park2019]</a> <a name="Park2019"></a>Park, Lee, Shim, Eun & Johansson, Stealthy Adversaries against Uncertain Cyber-Physical Systems: Threat of Robust Zero-Dynamics Attack, in: IEEE Trans. Automat. Contr., 2019. <a href=""></a></li>
+<li><a id="Ren2020">[Ren2020]</a> <a name="Ren2020"></a>Ren, Mo, Chen & Johansson, Secure State Estimation with Byzantine Sensors: A Probabilistic Approach, <i>IEEE Trans. Automat. Contr. </i>, 1-1 (2020). <a href=""></a></li>
+<li><a id="Satchidanandan2017">[Satchidanandan2017]</a> <a name="Satchidanandan2017"></a>Satchidanandan & Kumar, Dynamic Watermarking: Active Defense of Networked Cyber–Physical Systems, <i>Proceedings of the IEEE 105(2)</i>, 219-240 (2017). <a href=""></a></li>
+<li><a id="Schenato2007">[Schenato2007]</a> <a name="Schenato2007"></a>Schenato, Sinopoli, Franceschetti, Poolla & Sastry, Foundations of control and estimation over lossy networks, <i>Proc. IEEE 95(1)</i>, 163-187 (2007). <a href=""></a></li>
+<li><a id="Shamaiah2010">[Shamaiah2010]</a> <a name="Shamaiah2010"></a>Shamaiah, Banerjee & Vikalo, Greedy sensor selection: Leveraging submodularity, in: 49th IEEE Conf. Decis. Control, 2010. <a href="http://ieeexplore.ieee.org/document/5717225/">http://ieeexplore.ieee.org/document/5717225/</a></li>
+<li><a id="Shi2011">[Shi2011]</a> <a name="Shi2011"></a>Shi, Cheng & Chen, Optimal periodic sensor scheduling with limited resources, <i>IEEE Trans. Automat. Contr. 56(9)</i>, 2190-2195 (2011). <a href=""></a></li>
+<li><a id="Shi2014">[Shi2014]</a> <a name="Shi2014"></a>Shi, Chen & Shi, Event-triggered maximum likelihood state estimation, <i>Automatica 50(1)</i>, 247-254 (2014). <a href=""></a></li>
+<li><a id="Shoukry2015">[Shoukry2015]</a> <a name="Shoukry2015"></a>Shoukry, Martin, Yona, Diggavi & Srivastava, PyCRA, in: Proceedings of the 22nd ACM SIGSAC Conference on Computer and Communications Security - CCS '15, 2015. <a href=""></a></li>
+<li><a id="Shoukry2017">[Shoukry2017]</a> <a name="Shoukry2017"></a>Shoukry, Nuzzo, Puggelli, Sangiovanni-Vincentelli, Seshia & Tabuada, Secure State Estimation for Cyber-Physical Systems Under Sensor Attacks: A Satisfiability Modulo Theory Approach, <i>IEEE Trans. Automat. Contr. 62(10)</i>, 4917-4932 (2017). <a href="http://ieeexplore.ieee.org/document/7867816/">http://ieeexplore.ieee.org/document/7867816/</a></li>
+<li><a id="Sinopoli2004">[Sinopoli2004]</a> <a name="Sinopoli2004"></a>Sinopoli, Schenato, Franceschetti, Poolla, Jordan & Sastry, Kalman Filtering With Intermittent Observations, <i>IEEE Trans. Automat. Contr. 49(9)</i>, 1453-1464 (2004). <a href="http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=1333199">http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=1333199</a></li>
+<li><a id="Sui2015">[Sui2015]</a> <a name="Sui2015"></a>Sui, You & Fu, Stability conditions for multi-sensor state estimation over a lossy network, <i>Automatica 53</i>, 1-9 (2015). <a href="http://www.sciencedirect.com/science/article/pii/S0005109814006013">http://www.sciencedirect.com/science/article/pii/S0005109814006013</a></li>
+<li><a id="Tang2009">[Tang2009]</a> <a name="Tang2009"></a>Tang, Zimmerman & Nelson, Managing New Product Development and Supply Chain Risks: The Boeing 787 Case, <i>Supply Chain Forum An Int. J. 10(2)</i>, 74-86 (2009). <a href="https://doi.org/10.1080/16258312.2009.11517219">https://doi.org/10.1080/16258312.2009.11517219</a></li>
+<li><a id="Teixeira2015">[Teixeira2015]</a> <a name="Teixeira2015"></a>Teixeira, Shames, Sandberg & Johansson, A secure control framework for resource-limited adversaries, <i>Automatica 51(C)</i>, 135-148 (2015). <a href="https://linkinghub.elsevier.com/retrieve/pii/S0005109814004488">https://linkinghub.elsevier.com/retrieve/pii/S0005109814004488</a></li>
+<li><a id="Wang2019">[Wang2019]</a> <a name="Wang2019"></a>Wang, He, Cheng & Chen, Privacy Preserving Collaborative Computing: Heterogeneous Privacy Guarantee and Efficient Incentive Mechanism, <i>IEEE Trans. Signal Process. 67(1)</i>, 221-233 (2019). <a href=""></a></li>
+<li><a id="Wu2013">[Wu2013]</a> <a name="Wu2013"></a>Wu, Jia, Johansson & Shi, Event-based sensor data scheduling: Trade-off between communication rate and estimation quality, <i>IEEE Trans. Automat. Contr. 58(4)</i>, 1041-1046 (2013). <a href=""></a></li>
+<li><a id="Yan2020">[Yan2020]</a> <a name="Yan2020"></a>Yan, Chen & Varadharajan, Control of Large-Scale Networked Cyberphysical Systems Using Cryptographic Techniques, <i></i>, (2020). <a href="http://arxiv.org/abs/2002.03470">http://arxiv.org/abs/2002.03470</a></li>
+<li><a id="Yuan2020">[Yuan2020]</a> <a name="Yuan2020"></a>Yuan & Mo, Security for cyber-physical systems: Secure control against known-plaintext attack, <i>Sci. China Technol. Sci. </i>, 1-10 (2020). <a href="https://doi.org/10.1007/s11431-020-1621-y">https://doi.org/10.1007/s11431-020-1621-y</a></li>
+<li><a id="Zhang2020">[Zhang2020]</a> <a name="Zhang2020"></a>Zhang, Han, Ge, Ding, Ding, Yue & Peng, Networked control systems: a survey of trends and techniques, <i>IEEE/CAA Journal of Automatica Sinica 7(1)</i>, 1-17 (2020). <a href=""></a></li>
+<li><a id="Zhao2014">[Zhao2014]</a> <a name="Zhao2014"></a>Zhao, Zhang, Hu, Abate & Tomlin, On the optimal solutions of the infinite-horizon linear sensor scheduling problem, <i>IEEE Trans. Automat. Contr. 59(10)</i>, 825-830 (2014). <a href=""></a></li>
+</ul>
+<div class="slide-footer"><br></div>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/dist/reveal.js"></script>
+<script src="./reveal.js/plugin/notes/notes.js"></script>
+<script src="./reveal.js/plugin/search/search.js"></script>
+<script src="./reveal.js/plugin/zoom/zoom.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: true,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: true,
+fragmentInURL: true,
+hashOneBasedIndex: false,
+pdfSeparateFragments: false,
+
+overview: true,
+
+transition: 'fade',
+transitionSpeed: 'default',
+width: 1280, height: 720,
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealNotes, RevealSearch, RevealZoom ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+  { src: './reveal.js/plugin/mouse-pointer/mouse-pointer.js', async: true }, 
+{ src: './reveal.js/plugin/audio-slideshow/audio-slideshow.js', condition: function( ) { return !!document.body.classList && !Reveal.isSpeakerNotes(); } },
+{ src: './reveal.js/plugin/anything/anything.js' },
+{ src: './reveal.js/plugin/toc-progress/toc-progress.js', async: true, callback: function() { toc_progress.initialize('reduce', 'rgba(120,138,130,0.2)', 'body'); toc_progress.create(); } },
+{ src: './reveal.js/plugin/jump/jump.js', async: true },
+{ src: './reveal.js/plugin/quiz/js/quiz.js', async: true, callback: function() { prepareQuizzes({preventUnanswered: true, skipStartButton: true}); } },
+{ src: './reveal.js/plugin/coursemod/coursemod.js', async: true },
+{ src: './reveal.js/plugin/accessibility/helper.js', async: true, condition: function() { return !!document.body.classList; } }]
+
+,audioStartAtFragment: true,
+  audio: {
+    advance: -1, autoplay: false, defaultDuration: 0, defaultAudios: false, playerOpacity: 0.8, playerStyle: 'position: fixed; bottom: 9.5vh; left: 0%; width: 30%; height:30px; z-index: 33;' },
+anything: [
+        // Following initialization code for class animate from anything-demo.html.
+        // Copyright (c) 2016 Asvin Goel, under The MIT License (MIT).
+	{className: "animate",  initialize: (function(container, options){
+		Reveal.addEventListener( 'fragmentshown', function( event ) {
+			if (typeof event.fragment.beginElement === "function" ) {
+				event.fragment.beginElement();
+			}
+		});
+		Reveal.addEventListener( 'fragmenthidden', function( event ) {
+			if (event.fragment.hasAttribute('data-reverse') ) {
+				var reverse = event.fragment.parentElement.querySelector('[id=\"' + event.fragment.getAttribute('data-reverse') + '\"]');
+				if ( reverse && typeof reverse.beginElement === "function" ) {
+					reverse.beginElement();
+				}
+			}
+		});
+		if ( container.getAttribute("data-svg-src") ) {
+			var xhr = new XMLHttpRequest();
+			xhr.onload = function() {
+				if (xhr.readyState === 4) {
+					var svg = container.querySelector('svg');
+					container.removeChild( svg );
+					container.innerHTML = xhr.responseText + container.innerHTML;
+					if ( svg ) {
+						container.querySelector('svg').innerHTML = container.querySelector('svg').innerHTML + svg.innerHTML;
+					}
+				}
+				else {
+					console.warn( "Failed to get file. ReadyState: " + xhr.readyState + ", Status: " + xhr.status);
+				}
+			};
+			xhr.open( 'GET', container.getAttribute("data-svg-src"), true );
+			xhr.send();
+		}
+	}) },
+	{className: "randomPic",
+	 defaults: {imgalt: "Dummy alt text",
+		    imgcaption: "Image by {name}",
+		    choices: [ {name: "dummyname", path: "dummypath"} ]},
+	 initialize: (function(container, options){
+	     var choice = Math.trunc( Math.random()*(options.choices.length) );
+	     var img = "<img src='" + options.choices[choice].path + "' alt='" + options.choices[choice].imgalt + "' />";
+	     var caption = options.imgcaption.replace(new RegExp('\{name\}', 'gm'), options.choices[choice].name);
+	     container.innerHTML = img + caption;
+	 }) },
+	{className: "notes",
+	 initialize: (function(container, options){
+	     container.addEventListener('click', function(e) { Reveal.getPlugins().notes.open(); });
+	 }) }
+],
+coursemod: { enabled: true, shown: false },
+});
+</script>
+</body>
+</html>
